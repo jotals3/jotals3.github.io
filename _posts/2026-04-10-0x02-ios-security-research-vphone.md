@@ -18,7 +18,7 @@ Before starting with the challenges, we need to do some additional work in order
 #### Signing the binary
 
 If we directly copy the `vuln` binary into the virtualized phone (having previously created the `challenges` folder):
-```
+```shell
 scp -P 2222 vuln mobile@127.0.0.1:/var/mobile/challenges
 ```
 And try to execute it, we will be prompted with the following error:
@@ -28,7 +28,7 @@ zsh: killed     ./vuln
 ```
 
 This is because iOS requires a code signature on every Mach-O, even on our jailbroken vphone. We can use the `ldid` tool to sign it directly because in this jailbroken variant it won't be checked.
-```
+```shell
 ldid -S vuln
 ```
 If we now execute the signed version, we will be able to execute it normally:

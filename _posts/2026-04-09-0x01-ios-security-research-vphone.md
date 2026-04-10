@@ -141,12 +141,12 @@ As stated in the project README, do not select Japan or European Union as your r
 ### SSH Configuration
 
 To connect via SSH we first install the `openssh-server` package from Sileo (comes already preinstalled in the jb variant), we reboot the phone and then start the usbmux forward tunnel:
-```
+```shell
 python3 -m pymobiledevice3 usbmux forward 2222 22
 ```
 
 We can now finally get an ssh connection to our device: (password: `alpine`)
-```
+```shell
 ssh -p 2222 mobile@127.0.0.1 
 ```
 
@@ -162,11 +162,11 @@ In order to solve some simple lab exercises, we will user `radare2` to reverse e
 [radare2](https://github.com/radareorg/radare2) is a free/libre toolchain for easing several low level tasks like forensics, software reverse engineering, exploiting, debugging, ... It is composed by a bunch of libraries (which are extended with plugins) and programs that can be automated with almost any programming language. (source: https://www.radare.org/n/radare2.html)
 
 Despite the developers recommendation to install it from git, I tend to get `radare2` from Homebrew by running:
-```
+```shell
 brew install radare2
 ```
 I also like to have the Native Ghidra Decompiler for r2 plugin, [r2ghidra](https://github.com/radareorg/r2ghidra) installed just in case:
-```
+```shell
 r2pm -U
 r2pm -ci r2ghidra
 ```
@@ -176,7 +176,7 @@ r2pm -ci r2ghidra
 [LLDB](https://github.com/llvm/llvm-project) is a next generation, high-performance debugger. It is built as a set of reusable components which highly leverage existing libraries in the larger LLVM Project, such as the Clang expression parser and LLVM disassembler. It is the default debugger in Xcode on macOS and supports debugging C, Objective-C and C++ on the desktop and iOS devices and simulator. (source: https://lldb.llvm.org/)
 
 LLDB comes already preinstalled in macOS for the reasons described above, but I also like to use the LLEF plugin (the LLDB equivalent of GDB's gef/peda/pwndbg), which can be installed by simply cloning the repo and running the installation script:
-```
+```shell
 git clone https://github.com/foundryzero/llef
 cd llef
 ./install.sh
